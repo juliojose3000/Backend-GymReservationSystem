@@ -1,0 +1,20 @@
+0. It's necessary to have installed Maven: https://mkyong.com/maven/how-to-install-maven-in-windows/
+The installer is on the Utilities disk
+
+1. Create an accout at https://fly.io/
+
+2. We have to create the Dockerfile at the root of the project, with this code:
+
+	FROM ibm-semeru-runtimes:open-11-jre-focal
+	MAINTAINER https://renanfranca.github.io/about.html
+	COPY target/GymDates-0.0.1-SNAPSHOT.jar GymDates-0.0.1-SNAPSHOT.jar
+	ENV _JAVA_OPTIONS="-XX:MaxRAM=70m"
+	CMD java $_JAVA_OPTIONS -Dspring.profiles.active=$SPRING_PROFILES_ACTIVE -jar GymDates-0.0.1-SNAPSHOT.jar
+
+3. Generate the Jar file with this command: mvn clean package
+When it is done, the file will be here: dates-gym-backend\target\GymDates-0.0.1-SNAPSHOT.jar
+
+4. After that, we have to deploy it to Fly using this command: fly launch --now
+https://fly.io/terminal
+We have to execute that command on the root of the project in the CMD
+
