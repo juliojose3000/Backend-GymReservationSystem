@@ -29,41 +29,33 @@ public class GymDatesApplication {
 	private static ClassLoader mainThreadClassLoader;
 
 	public static void main(String[] args) {
-		try {
-			String configConstantsValues = Log.createWithoutWrite(TAG, "Loading config constants...");
-			URL url = new URL(ConfigConstants.IS_PRODUCTION?ConfigConstants.PRODUCTION_CONFIG_FILE_URL:ConfigConstants.DEVELOP_CONFIG_FILE_URL);
-			Scanner scanner = new Scanner(url.openStream());
-			
-			configConstantsValues += Log.createWithoutWrite(TAG, "IS_PRODUCTION="+ConfigConstants.IS_PRODUCTION);	
-			// read from your scanner
-			while (scanner.hasNextLine()) {
-				String configConstant = scanner.nextLine();
-				String[] keyValue = configConstant.split("=");
-				configConstantsValues += Log.createWithoutWrite(TAG, keyValue[0]+"="+ keyValue[1]);
-				ConfigConstants.setValues(keyValue[0], keyValue[1]);
-			}
-			scanner.close();
-			if(ConfigConstants.PRINT_CONFIG_CONSTANTS_VALUES)
-				Log.write(configConstantsValues);
-
-			
-	        SpringApplication application = new SpringApplication(GymDatesApplication.class);
-
-	        Properties properties = new Properties();
-	        properties.put( "spring.datasource.url", ConfigConstants.getDataBaseConnectionString() );
-	        properties.put( "spring.datasource.username", ConfigConstants.DB_USERNAME );
-	        properties.put( "spring.datasource.password", ConfigConstants.DB_PASSWORD );
-	        application.setDefaultProperties(properties);
-
-	        mainThreadClassLoader = Thread.currentThread().getContextClassLoader();
-	        context = application.run(args);
-			
-		} catch (IOException ex) {
-			// there was some connection problem, or the file did not exist on the server,
-			// or your URL was not in the right format.
-			// think about what to do now, and put it here.
-			ex.printStackTrace(); // for now, simply output it.
+		/*String configConstantsValues = Log.createWithoutWrite(TAG, "Loading config constants...");
+		URL url = new URL(ConfigConstants.IS_PRODUCTION?ConfigConstants.PRODUCTION_CONFIG_FILE_URL:ConfigConstants.DEVELOP_CONFIG_FILE_URL);
+		Scanner scanner = new Scanner(url.openStream());
+		
+		configConstantsValues += Log.createWithoutWrite(TAG, "IS_PRODUCTION="+ConfigConstants.IS_PRODUCTION);	
+		// read from your scanner
+		while (scanner.hasNextLine()) {
+			String configConstant = scanner.nextLine();
+			String[] keyValue = configConstant.split("=");
+			configConstantsValues += Log.createWithoutWrite(TAG, keyValue[0]+"="+ keyValue[1]);
+			ConfigConstants.setValues(keyValue[0], keyValue[1]);
 		}
+		scanner.close();
+		if(ConfigConstants.PRINT_CONFIG_CONSTANTS_VALUES)
+			Log.write(configConstantsValues);*/
+
+		
+		SpringApplication application = new SpringApplication(GymDatesApplication.class);
+
+		Properties properties = new Properties();
+		properties.put("spring.datasource.url", ConfigConstants.getDataBaseConnectionString() );
+		properties.put("spring.datasource.username", ConfigConstants.DB_USERNAME );
+		properties.put("spring.datasource.password", ConfigConstants.DB_PASSWORD );
+		application.setDefaultProperties(properties);
+
+		mainThreadClassLoader = Thread.currentThread().getContextClassLoader();
+		context = application.run(args);
 
 	}
 
@@ -79,44 +71,36 @@ public class GymDatesApplication {
         Thread thread = new Thread(() -> {
             context.close();
             
-    		try {
-    			String configConstantsValues = Log.createWithoutWrite(TAG, "Loading config constants...");
-    			URL url = new URL(ConfigConstants.IS_PRODUCTION?ConfigConstants.PRODUCTION_CONFIG_FILE_URL:ConfigConstants.DEVELOP_CONFIG_FILE_URL);
-    			Scanner scanner = new Scanner(url.openStream());
-    			
-    			configConstantsValues += Log.createWithoutWrite(TAG, "IS_PRODUCTION="+ConfigConstants.IS_PRODUCTION);	
-    			// read from your scanner
-    			while (scanner.hasNextLine()) {
-    				String configConstant = scanner.nextLine();
-    				String[] keyValue = configConstant.split("=");
-    				configConstantsValues += Log.createWithoutWrite(TAG, keyValue[0]+"="+ keyValue[1]);
-    				ConfigConstants.setValues(keyValue[0], keyValue[1]);
-    			}
-    			scanner.close();
-    			if(ConfigConstants.PRINT_CONFIG_CONSTANTS_VALUES)
-    				Log.write(configConstantsValues);
+    		String configConstantsValues = Log.createWithoutWrite(TAG, "Loading config constants...");
+			/*URL url = new URL(ConfigConstants.IS_PRODUCTION?ConfigConstants.PRODUCTION_CONFIG_FILE_URL:ConfigConstants.DEVELOP_CONFIG_FILE_URL);
+			Scanner scanner = new Scanner(url.openStream());
+			
+			configConstantsValues += Log.createWithoutWrite(TAG, "IS_PRODUCTION="+ConfigConstants.IS_PRODUCTION);	
+			// read from your scanner
+			while (scanner.hasNextLine()) {
+				String configConstant = scanner.nextLine();
+				String[] keyValue = configConstant.split("=");
+				configConstantsValues += Log.createWithoutWrite(TAG, keyValue[0]+"="+ keyValue[1]);
+				ConfigConstants.setValues(keyValue[0], keyValue[1]);
+			}
+			scanner.close();
+			if(ConfigConstants.PRINT_CONFIG_CONSTANTS_VALUES)
+				Log.write(configConstantsValues);*/
 
-    			
-    	        SpringApplication application = new SpringApplication(GymDatesApplication.class);
+			
+			SpringApplication application = new SpringApplication(GymDatesApplication.class);
 
-    	        Properties properties = new Properties();
-    	        properties.put("spring.datasource.url", ConfigConstants.getDataBaseConnectionString());
-    	        application.setDefaultProperties(properties);
+			Properties properties = new Properties();
+			properties.put("spring.datasource.url", ConfigConstants.getDataBaseConnectionString());
+			application.setDefaultProperties(properties);
 
-    	        mainThreadClassLoader = Thread.currentThread().getContextClassLoader();
-    	        
-    	        //Cleaning static data
-    	        ScheduleData.currentSchedule = null;
-    	        UserData.LIST_USERS = new ArrayList<>();
-    	        
-    	        context = application.run(args.getSourceArgs());
-    			
-    		} catch (IOException ex) {
-    			// there was some connection problem, or the file did not exist on the server,
-    			// or your URL was not in the right format.
-    			// think about what to do now, and put it here.
-    			ex.printStackTrace(); // for now, simply output it.
-    		}
+			mainThreadClassLoader = Thread.currentThread().getContextClassLoader();
+			
+			//Cleaning static data
+			ScheduleData.currentSchedule = null;
+			UserData.LIST_USERS = new ArrayList<>();
+			
+			context = application.run(args.getSourceArgs());
             
             
         });

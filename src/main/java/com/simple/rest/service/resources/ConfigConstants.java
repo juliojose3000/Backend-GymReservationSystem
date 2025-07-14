@@ -19,13 +19,13 @@ public class ConfigConstants {
 	 * public static final boolean SEND_EMAIL = false;
 	 */
 
-	public static final String DEVELOP_CONFIG_FILE_URL = "https://loaizagreen.000webhostapp.com/Cachi-Fitness-Center-Web-Page/develop/config/config.txt";
-	public static final String PRODUCTION_CONFIG_FILE_URL = "https://loaizagreen.000webhostapp.com/Cachi-Fitness-Center-Web-Page/production/config/config.txt";
+	//public static final String DEVELOP_CONFIG_FILE_URL = "https://loaizagreen.000webhostapp.com/Cachi-Fitness-Center-Web-Page/develop/config/config.txt";
+	//public static final String PRODUCTION_CONFIG_FILE_URL = "https://loaizagreen.000webhostapp.com/Cachi-Fitness-Center-Web-Page/production/config/config.txt";
 	public static final boolean IS_PRODUCTION = false; // TODO put in true to production
 	public static final int TRUE = 1;
 	public static final int FALSE = 0;
 	
-	public static int HOUR_TO_CREATE_A_NEW_SCHEDULE; // 5 PM
+	/*public static int HOUR_TO_CREATE_A_NEW_SCHEDULE; // 5 PM
 	public static String FRONTEND_URL;
 	public static String BACKEND_URL;
 	public static String SERVER_EMAIL;
@@ -37,9 +37,27 @@ public class ConfigConstants {
 	public static boolean PRINT_CONFIG_CONSTANTS_VALUES;
 	public static String DATABASE_NAME;
 	public static String DB_USERNAME;
-	public static String DB_PASSWORD;
+	public static String DB_PASSWORD;*/
+	
+	public static int HOUR_TO_CREATE_A_NEW_SCHEDULE = 15; // 5 PM
+	public static String FRONTEND_URL = "http://192.168.88.18:4200";
+	public static String BACKEND_URL = "http://192.168.88.18:8080/gymcachi";
+	public static String SERVER_EMAIL = "gymcachi@hotmail.com";
+	public static String SERVER_EMAIL_PASSWORD = "Fkc225EvWcQ5";
+	public static boolean IGNORE_TOKEN_EXPIRATION = true;// This variable indicates if the token (user session) has a life time
+	public static int TOKEN_MINUTES_LIFE_TIME = 60;// This variable indicates, if the previus variable is false, the life time of a user session.
+	public static boolean SEND_EMAIL = false;
+	public static int NUMBER_OF_CUSTOMERS_PER_SHIFT = 2;
+	public static boolean PRINT_CONFIG_CONSTANTS_VALUES = true;
+	public static String DATABASE_NAME = "railway";
+	public static String DB_USERNAME = "root";
+	public static String DB_PASSWORD = "acJVtpQIsuWILIfYgjtDBYvDHVHXUQTE";
+	public static String DB_HOST = "hopper.proxy.rlwy.net";
+	public static String DB_PORT = "32316";
+	public static String DB_NAME = "railway";
+	
 
-	public static void setValues(String key, String value) {
+	/*public static void setValues(String key, String value) {
 		switch (key) {
 		case "HOUR_TO_CREATE_A_NEW_SCHEDULE":
 			HOUR_TO_CREATE_A_NEW_SCHEDULE = Integer.parseInt(value);
@@ -81,10 +99,10 @@ public class ConfigConstants {
 			DB_PASSWORD = value;
 			break;
 		}
-	}
+	}*/
 	
 	public static String getDataBaseConnectionString() {
-		return "jdbc:mysql://sql5.freemysqlhosting.net:3306/"+DATABASE_NAME;
+	    return "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
 	}
 
 }
