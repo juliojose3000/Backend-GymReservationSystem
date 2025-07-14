@@ -38,7 +38,7 @@ public class Log {
 	
 	public static void write(String log) {
 		
-        String requestData = "{\"log\":\""+log+"\"}";
+        /*String requestData = "{\"log\":\""+log+"\"}";
         StringEntity entity = new StringEntity(requestData,
                 ContentType.APPLICATION_FORM_URLENCODED);
 
@@ -53,7 +53,7 @@ public class Log {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 
