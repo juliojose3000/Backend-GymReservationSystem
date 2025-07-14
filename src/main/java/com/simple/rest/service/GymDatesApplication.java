@@ -29,8 +29,8 @@ public class GymDatesApplication {
 	private static ClassLoader mainThreadClassLoader;
 
 	public static void main(String[] args) {
-		String configConstantsValues = Log.createWithoutWrite(TAG, "Loading config constants...");
-		/*URL url = new URL(ConfigConstants.IS_PRODUCTION?ConfigConstants.PRODUCTION_CONFIG_FILE_URL:ConfigConstants.DEVELOP_CONFIG_FILE_URL);
+		/*String configConstantsValues = Log.createWithoutWrite(TAG, "Loading config constants...");
+		URL url = new URL(ConfigConstants.IS_PRODUCTION?ConfigConstants.PRODUCTION_CONFIG_FILE_URL:ConfigConstants.DEVELOP_CONFIG_FILE_URL);
 		Scanner scanner = new Scanner(url.openStream());
 		
 		configConstantsValues += Log.createWithoutWrite(TAG, "IS_PRODUCTION="+ConfigConstants.IS_PRODUCTION);	
@@ -41,17 +41,17 @@ public class GymDatesApplication {
 			configConstantsValues += Log.createWithoutWrite(TAG, keyValue[0]+"="+ keyValue[1]);
 			ConfigConstants.setValues(keyValue[0], keyValue[1]);
 		}
-		scanner.close();*/
+		scanner.close();
 		if(ConfigConstants.PRINT_CONFIG_CONSTANTS_VALUES)
-			Log.write(configConstantsValues);
+			Log.write(configConstantsValues);*/
 
 		
 		SpringApplication application = new SpringApplication(GymDatesApplication.class);
 
 		Properties properties = new Properties();
-		properties.put( "spring.datasource.url", ConfigConstants.getDataBaseConnectionString() );
-		properties.put( "spring.datasource.username", ConfigConstants.DB_USERNAME );
-		properties.put( "spring.datasource.password", ConfigConstants.DB_PASSWORD );
+		properties.put("spring.datasource.url", ConfigConstants.getDataBaseConnectionString() );
+		properties.put("spring.datasource.username", ConfigConstants.DB_USERNAME );
+		properties.put("spring.datasource.password", ConfigConstants.DB_PASSWORD );
 		application.setDefaultProperties(properties);
 
 		mainThreadClassLoader = Thread.currentThread().getContextClassLoader();
@@ -83,9 +83,9 @@ public class GymDatesApplication {
 				configConstantsValues += Log.createWithoutWrite(TAG, keyValue[0]+"="+ keyValue[1]);
 				ConfigConstants.setValues(keyValue[0], keyValue[1]);
 			}
-			scanner.close();*/
+			scanner.close();
 			if(ConfigConstants.PRINT_CONFIG_CONSTANTS_VALUES)
-				Log.write(configConstantsValues);
+				Log.write(configConstantsValues);*/
 
 			
 			SpringApplication application = new SpringApplication(GymDatesApplication.class);

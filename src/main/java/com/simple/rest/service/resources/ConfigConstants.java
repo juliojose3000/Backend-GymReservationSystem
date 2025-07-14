@@ -19,8 +19,8 @@ public class ConfigConstants {
 	 * public static final boolean SEND_EMAIL = false;
 	 */
 
-	public static final String DEVELOP_CONFIG_FILE_URL = "https://loaizagreen.000webhostapp.com/Cachi-Fitness-Center-Web-Page/develop/config/config.txt";
-	public static final String PRODUCTION_CONFIG_FILE_URL = "https://loaizagreen.000webhostapp.com/Cachi-Fitness-Center-Web-Page/production/config/config.txt";
+	//public static final String DEVELOP_CONFIG_FILE_URL = "https://loaizagreen.000webhostapp.com/Cachi-Fitness-Center-Web-Page/develop/config/config.txt";
+	//public static final String PRODUCTION_CONFIG_FILE_URL = "https://loaizagreen.000webhostapp.com/Cachi-Fitness-Center-Web-Page/production/config/config.txt";
 	public static final boolean IS_PRODUCTION = false; // TODO put in true to production
 	public static final int TRUE = 1;
 	public static final int FALSE = 0;
@@ -49,9 +49,13 @@ public class ConfigConstants {
 	public static boolean SEND_EMAIL = false;
 	public static int NUMBER_OF_CUSTOMERS_PER_SHIFT = 2;
 	public static boolean PRINT_CONFIG_CONSTANTS_VALUES = true;
-	public static String DATABASE_NAME = "sql5486065";
-	public static String DB_USERNAME = "sql5486065";
-	public static String DB_PASSWORD = "LR5TuxUkiy";
+	public static String DATABASE_NAME = "railway";
+	public static String DB_USERNAME = "root";
+	public static String DB_PASSWORD = "acJVtpQIsuWILIfYgjtDBYvDHVHXUQTE";
+	public static String DB_HOST = "hopper.proxy.rlwy.net";
+	public static String DB_PORT = "32316";
+	public static String DB_NAME = "railway";
+	
 
 	/*public static void setValues(String key, String value) {
 		switch (key) {
@@ -98,7 +102,7 @@ public class ConfigConstants {
 	}*/
 	
 	public static String getDataBaseConnectionString() {
-		return "jdbc:mysql://sql5.freemysqlhosting.net:3306/"+DATABASE_NAME;
+	    return "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
 	}
 
 }
